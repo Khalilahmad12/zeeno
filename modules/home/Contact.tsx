@@ -104,7 +104,7 @@ const Contact: React.FC = () => {
               key={idx}
               variants={itemVariants}
               whileHover={{ x: 10 }}
-              className="bg-white dark:bg-[#111] border border-black/5 dark:border-white/5 p-8 rounded-[8px] flex items-center gap-6 group hover:border-brand-blue/30 transition-all duration-300 shadow-sm dark:shadow-none relative overflow-hidden"
+              className="bg-white dark:bg-[#111] border border-black/5 dark:border-white/5 py-5 lg:p-8 rounded-[8px] flex items-center gap-2 md:gap-6 group hover:border-brand-blue/30 transition-all duration-300 shadow-sm dark:shadow-none relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-24 h-24 bg-brand-blue/[0.02] rounded-bl-full translate-x-12 -translate-y-12 group-hover:translate-x-8 group-hover:-translate-y-8 transition-transform duration-500" />
               
@@ -112,8 +112,8 @@ const Contact: React.FC = () => {
                 {info.icon}
               </div>
               <div>
-                <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-blue mb-1">{info.title}</h4>
-                <p className="text-xl font-bold text-slate-900 dark:text-white mb-0.5">{info.value}</p>
+                <h4 className="md:text-[10px] font-bold uppercase tracking-[0.2em] text-brand-blue mb-1">{info.title}</h4>
+                <p className="text-sm md:text-xl font-bold text-slate-900 dark:text-white mb-0.5">{info.value}</p>
                 <p className="text-xs text-slate-400 dark:text-gray-500 font-medium">{info.sub}</p>
               </div>
             </motion.div>
@@ -148,7 +148,7 @@ const Contact: React.FC = () => {
         >
           <form 
             onSubmit={handleSubmit}
-            className="bg-white dark:bg-[#111] border border-black/5 dark:border-white/5 p-2 w-72 md:w-full lg:p-14 rounded-[8px] shadow-2xl shadow-slate-200/50 dark:shadow-none space-y-8 relative overflow-hidden group/form"
+            className="bg-white dark:bg-[#111] border border-black/5 dark:border-white/5 p-2 mx-auto w-[350px] md:w-full lg:p-14 rounded-[8px] shadow-2xl shadow-slate-200/50 dark:shadow-none space-y-8 relative overflow-hidden group/form"
           >
             {/* Subtle Texture/Background Overlay */}
             <div className="absolute top-0 right-0 w-full h-full opacity-[0.02] pointer-events-none group-hover/form:opacity-[0.05] transition-opacity duration-700">

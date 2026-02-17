@@ -9,6 +9,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, setCurrentPage }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false); // new state
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -39,6 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, setCurrentPage }) => {
     setCurrentPage(id);
     setIsMobileMenuOpen(false);
     setIsServicesDropdownOpen(false);
+    setIsMobileServicesOpen(false); // reset mobile dropdown
     window.scrollTo(0, 0);
   };
 
@@ -127,14 +129,33 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, setCurrentPage }) => {
           {navLinks.map((link) => (
             <div key={link.id}>
               <button
-                onClick={() => handleNavClick(link.id)}
+                onClick={() => {
+                  if (link.hasDropdown) {
+                    setIsMobileServicesOpen(!isMobileServicesOpen);
+                  } else {
+                    handleNavClick(link.id);
+                  }
+                }}
                 className={`block w-full text-left text-lg font-bold flex items-center justify-between ${
                   currentPage === link.id ? 'text-brand-blue' : 'text-slate-800'
                 }`}
               >
                 {link.name}
+                {link.hasDropdown && (
+                  <svg
+                    className={`w-5 h-5 transition-transform ${
+                      isMobileServicesOpen ? 'rotate-180' : ''
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                )}
               </button>
-              {link.hasDropdown && (
+
+              {link.hasDropdown && isMobileServicesOpen && (
                 <div className="pl-4 mt-2 space-y-2 border-l-2 border-brand-blue/20">
                   {serviceItems.map((service, idx) => (
                     <button
